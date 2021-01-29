@@ -18,7 +18,7 @@ import com.ruoyi.common.enums.BusinessType;
 import ${packageName}.domain.${ClassName};
 import ${packageName}.service.I${ClassName}Service;
 import com.ruoyi.common.utils.poi.ExcelUtil;
-#if($table.crud || $table.sub)
+#if($table.crud)
 import com.ruoyi.common.core.page.TableDataInfo;
 #elseif($table.tree)
 #end
@@ -41,7 +41,7 @@ public class ${ClassName}Controller extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('${permissionPrefix}:list')")
     @GetMapping("/list")
-#if($table.crud || $table.sub)
+#if($table.crud)
     public TableDataInfo list(${ClassName} ${className})
     {
         startPage();
@@ -75,6 +75,16 @@ public class ${ClassName}Controller extends BaseController
     @PreAuthorize("@ss.hasPermi('${permissionPrefix}:query')")
     @GetMapping(value = "/{${pkColumn.javaField}}")
     public AjaxResult getInfo(@PathVariable("${pkColumn.javaField}") ${pkColumn.javaType} ${pkColumn.javaField})
+    {
+        return AjaxResult.success(${className}Service.select${ClassName}ById(${pkColumn.javaField}));
+    }
+
+    /**
+     * 获取${functionName}详细信息
+     */
+    @PreAuthorize("@ss.hasPermi('${permissionPrefix}:detail')")
+    @GetMapping(value = "/detail/{${pkColumn.javaField}}")
+    public AjaxResult getDetail(@PathVariable("${pkColumn.javaField}") ${pkColumn.javaType} ${pkColumn.javaField})
     {
         return AjaxResult.success(${className}Service.select${ClassName}ById(${pkColumn.javaField}));
     }

@@ -17,6 +17,15 @@ export function get${BusinessName}(${pkColumn.javaField}) {
   })
 }
 
+
+// 查询${functionName}详细
+export function getDetail${BusinessName}(${pkColumn.javaField}) {
+  return request({
+    url: '/${moduleName}/${businessName}/detail/' + ${pkColumn.javaField},
+    method: 'get'
+  })
+}
+
 // 新增${functionName}
 export function add${BusinessName}(data) {
   return request({
