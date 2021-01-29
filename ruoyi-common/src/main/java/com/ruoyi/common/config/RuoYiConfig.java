@@ -21,6 +21,7 @@ public class RuoYiConfig
     /** 版权年份 */
     private String copyrightYear;
 
+
     /** 实例演示开关 */
     private boolean demoEnabled;
 
